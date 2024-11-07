@@ -1,45 +1,35 @@
-name: React App CI/CD Pipeline
+name: React Pipeline
 
 on:
   push:
-    branches:
-      - main  # Trigger on push to the main branch
+    branches: [ main ]
 
+permissions:    
+     pages: write
+       id-token: write
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    
     steps:
-    # Checkout the code
     - name: Checkout code
       uses: actions/checkout@v3
-
-    # Set up Node.js environment
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16'  # You can change this to your preferred version of Node.js
-
-    # Install dependencies
+        node-version: 20  
     - name: Install dependencies
-      run: |
-        npm install
-    
-    # Run tests (optional)
-    - name: Run tests
-      run: |
-        npm test -- --coverage # This runs your tests and shows coverage (optional)
-
-    # Build the React app
+      run: npm ci
     - name: Build the app
-      run: |
-        npm run build
+      run:  npm run build
+    - name: Uploud artifacts 
+      uses: actions/uploud-pages-artifact@3
+       with:
+        name: 'github-pages'
+        path: build
+     - name : Deploy-pages
+       path: actions/deploy-pages@v4
+       with:
+         token: ${{ secrets.GITHUB-TOKEN }}      
     
-    # Deploy the app (example using Netlify CLI)
-    - name: Deploy to Netlify
-      run: |
-        npm install -g netlify-cli
-        netlify deploy --prod --dir=build
-      env:
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}  # Add Netlify token to GitHub Secrets
+
 

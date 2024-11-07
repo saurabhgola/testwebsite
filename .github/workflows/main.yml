@@ -1,0 +1,45 @@
+name: React App CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Checkout the code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Set up Node.js environment
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # You can change this to your preferred version of Node.js
+
+    # Install dependencies
+    - name: Install dependencies
+      run: |
+        npm install
+    
+    # Run tests (optional)
+    - name: Run tests
+      run: |
+        npm test -- --coverage # This runs your tests and shows coverage (optional)
+
+    # Build the React app
+    - name: Build the app
+      run: |
+        npm run build
+    
+    # Deploy the app (example using Netlify CLI)
+    - name: Deploy to Netlify
+      run: |
+        npm install -g netlify-cli
+        netlify deploy --prod --dir=build
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}  # Add Netlify token to GitHub Secrets
+

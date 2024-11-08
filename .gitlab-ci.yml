@@ -3,7 +3,7 @@ name: React CI/CD Pipeline
 on:
   push:
     branches:
-      - surabhtest  # Trigger on push to main branch
+      - main  # Trigger on push to main branch
 
 jobs:
   build:

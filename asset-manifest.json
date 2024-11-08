@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/saurabhgola/testwebsite/static/css/main.f855e6bc.css",
+    "main.js": "/saurabhgola/testwebsite/static/js/main.535d37f1.js",
+    "static/js/453.ed3810f9.chunk.js": "/saurabhgola/testwebsite/static/js/453.ed3810f9.chunk.js",
+    "index.html": "/saurabhgola/testwebsite/index.html",
+    "main.f855e6bc.css.map": "/saurabhgola/testwebsite/static/css/main.f855e6bc.css.map",
+    "main.535d37f1.js.map": "/saurabhgola/testwebsite/static/js/main.535d37f1.js.map",
+    "453.ed3810f9.chunk.js.map": "/saurabhgola/testwebsite/static/js/453.ed3810f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.535d37f1.js"
+  ]
+}

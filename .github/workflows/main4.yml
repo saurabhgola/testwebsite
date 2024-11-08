@@ -1,0 +1,50 @@
+ name: test Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Trigger this workflow on push to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Step 1: Checkout the code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Step 2: Set up Node.js environment
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # You can change this to the version of Node.js you prefer
+
+    # Step 3: Cache Node.js dependencies to speed up builds
+    - name: Cache Node.js modules
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-modules-
+
+    # Step 4: Install dependencies
+    - name: Install dependencies
+      run: npm install
+    
+    # Step 5: Run tests (optional)
+    - name: Run tests
+      run: npm test -- --coverage  # This runs your tests and shows code coverage (optional)
+    
+    # Step 6: Build the React app
+    - name: Build the app
+      run: npm run build
+
+    # Step 7: Deploy to Netlify
+    - name: Deploy to Netlify
+      run: |
+        npm install -g netlify-cli
+        netlify deploy --prod --dir=build
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}  # Add your Netlify token in GitHub secrets

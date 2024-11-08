@@ -1,36 +1,42 @@
-name: React Pipeline
+name: React CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main  # Trigger on push to main branch
 
-permissions:    
-     pages: write
-    # id-token: write
-    
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 20  
-    - name: Install dependencies
-      run: npm ci
-    - name: Build the app
-      run:  npm run build
-    - name: Uploud artifacts 
-      uses: actions/uploud-pages-artifact@3
-       with:
-        name: 'github-pages'
-        path: build
-     - name : Deploy-pages
-       path: actions/deploy-pages@v4
-       with:
-         token: ${{ secrets.GITHUB-TOKEN }}      
-    
+      # Check out the code
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
 
+      # Install dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Run tests (optional)
+      - name: Run Tests
+        run: npm test -- --coverage
+
+      # Build the React app
+      - name: Build
+        run: npm run build
+
+      # Deploy to hosting (example for Netlify)
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          npm install -g netlify-cli
+          netlify deploy --prod --dir=build --site $NETLIFY_SITE_ID

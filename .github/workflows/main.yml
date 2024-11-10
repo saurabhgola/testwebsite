@@ -4,12 +4,13 @@ on:
   push:
     branches:
       - main  # Trigger on push to main branch
+
 permissions: 
  contents: write
- 
+
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       # Check out the code
@@ -25,6 +26,7 @@ jobs:
       # Install dependencies
       - name: Install Dependencies
         run: npm install
+
       - name: Build Project
         run: npm run build
 

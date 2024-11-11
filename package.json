@@ -13,6 +13,17 @@
     "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
   "scripts": {
     "predeploy": "npm run build",
     "deploy":"gh-pages -d build",
@@ -38,5 +49,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+    
   }
+  
 }

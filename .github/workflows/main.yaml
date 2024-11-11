@@ -3,7 +3,7 @@ name: React CI/CD Pipeline
 on:
   push:
     branches:
-      - main  # Trigger on push to the main branch
+      - main  # Trigger on push to main branch
 
 permissions: 
   contents: write
@@ -13,15 +13,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Check out the code
+      # Checkout the code
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Set up Node.js
+      # Set up Node.js (explicitly use Node.js 20)
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Use the latest stable Node.js 20 version
+          node-version: '20'  # Explicitly specify Node.js version 20
 
       # Install dependencies
       - name: Install Dependencies
@@ -31,17 +31,15 @@ jobs:
       - name: Run Tests
         run: npm test -- --coverage
 
-      # Build the React app (Only one build step)
+      # Build the React app
       - name: Build Project
         run: npm run build
 
-      # Deploy to Netlify
+      # Deploy to Netlify (example deployment step)
       - name: Deploy to Netlify
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: |
-          # Install Netlify CLI globally
           npm install -g netlify-cli
-          # Deploy the build directory to Netlify
           netlify deploy --prod --dir=build --site $NETLIFY_SITE_ID

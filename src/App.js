@@ -5,6 +5,7 @@ function App() {
   <>
     <div className="App">
       <h1>NEW-WEBSITE</h1>
+      <a href="https://reactjs.org">Learn React</a>  {/* Add the link if necessary */}
     </div>
   </>
   );

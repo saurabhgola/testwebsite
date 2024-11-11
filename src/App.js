@@ -1,4 +1,6 @@
 import './App.css';
+import { act } from 'react-dom/test-utils';
+
 
 function App() {
   return (

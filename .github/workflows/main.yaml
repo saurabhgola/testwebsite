@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main  # Trigger on push to main branch
-
+      - dev
 permissions: 
  contents: write
 
@@ -40,9 +40,14 @@ jobs:
 
       # Deploy to hosting (example for Netlify)
       - name: Deploy to Netlify
+        # env:
+        #   NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        #   NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          MY_API_KEY: ${{ secrets.MY_API_KEY }}  # Add any additional environment variables here
+
         run: |
           npm install -g netlify-cli
           netlify deploy --prod --dir=build --site $NETLIFY_SITE_ID

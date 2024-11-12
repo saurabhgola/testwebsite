@@ -1,11 +1,39 @@
 
+# name: React CI/CD Pipeline
+
+# on:
+#   push:
+#     branches: 
+#       - main
+#   workflow_dispatch:
+
+# jobs:
+#   display:
+#     runs-on: ubuntu-latest
+#     env:
+#       platform: Azure
+#       region: central
+#       profile_path: profile/
+
+#     steps:
+#       # Check out the code
+#       - name: Checkout Code
+#         if: ${{ env.platform == 'Azure' }} 
+#         run: |
+#           echo "The platform is ${{ env.platform }}"  # Corrected the typo "platfrom"
+#           echo "The region is ${{ env.region }}"  # Corrected to use `${{ env.region }}`
+
+
+
+
+
 name: React CI/CD Pipeline
 
 on:
   push:
     branches: 
-      - main
-  workflow_dispatch:
+      - main  # Trigger on push to the main branch
+  workflow_dispatch:  # Allow manual triggering of the workflow
 
 jobs:
   display:
@@ -16,9 +44,24 @@ jobs:
       profile_path: profile/
 
     steps:
-      # Check out the code
+      # Checkout the code from the repository
       - name: Checkout Code
-        if: ${{ env.platform == 'Azure' }} 
+        if: ${{ env.platform == 'Azure' }}  # Conditional step based on platform
         run: |
-          echo "The platform is ${{ env.platform }}"  # Corrected the typo "platfrom"
-          echo "The region is ${{ env.region }}"  # Corrected to use `${{ env.region }}`
+          echo "The platform is ${{ env.platform }}"
+          echo "The region is ${{ env.region }}"
+      
+      # Example: Verify the presence of essential environment variables
+      - name: Verify Environment Variables
+        run: |
+          if [ -z "${{ env.platform }}" ] || [ -z "${{ env.region }}" ]; then
+            echo "Error: Missing platform or region environment variable!"
+            exit 1
+          fi
+
+      # Example: Using the profile path
+      - name: Use Profile Path
+        run: |
+          echo "Profile path is ${{ env.profile_path }}"
+          # Further steps can utilize profile_path here
+

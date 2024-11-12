@@ -8,8 +8,9 @@ function App() {
       <h2>Welcome</h2>
       <h2>New test branch</h2>
       <h3>Netlify Test west</h3>
-      <br/>
-      <p className="App-intro">Current Enviornment: {process.env.REACT_APP_ENVIORNMENT}</p>
+      <h2>this Newdeveloped-new</h2>
+ <br/>
+    <p className="App-intro">Current Enviornment: {process.env.REACT_APP_ENVIORNMENT}</p>
     </div>
   </>
   );

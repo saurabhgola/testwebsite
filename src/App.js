@@ -5,7 +5,6 @@ function App() {
   <>
     <div className="App">
       <h1>NEW-WEBSITE</h1>
-      <h2>Welcome</h2>
       <h2>New test branch</h2>
       <h3>Test branch</h3>
       <br/>

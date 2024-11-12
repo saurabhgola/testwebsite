@@ -44,6 +44,10 @@ jobs:
       profile_path: profile/
 
     steps:
+      # Check out the code
+
+       - name: Checkout Code
+        uses: actions/checkout@v3
       # Checkout the code from the repository
       - name: Checkout Code
         if: ${{ env.platform == 'Azure' }}  # Conditional step based on platform

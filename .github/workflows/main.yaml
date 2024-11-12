@@ -32,8 +32,13 @@ name: React CI/CD Pipeline
 on:
   push:
     branches: 
-      - main        # Trigger the pipeline on a push to the main branch
+
+- main        # Trigger the pipeline on a push to the main branch
   workflow_dispatch:  # Allow the workflow to be triggered manually
+
+- main  # Trigger on push to the main branch
+  workflow_dispatch:  # Allow manual triggering of the workflow
+
 
 jobs:
   display:
@@ -44,7 +49,8 @@ jobs:
       profile_path: profile/  # Define environment variable 'profile_path'
 
     steps:
-      # Step 1: Debug environment variables to ensure they are set correctly
+
+# Step 1: Debug environment variables to ensure they are set correctly
       - name: Debug Environment Variables
         run: |
           echo "Platform: ${{ env.platform }}"
@@ -52,11 +58,15 @@ jobs:
           echo "Profile Path: ${{ env.profile_path }}"
 
       # Step 2: Checkout the code (conditionally based on platform)
-      - name: Checkout Code
+
+# Checkout the code from the repository
+
+- name: Checkout Code
         if: ${{ env.platform == 'Azure' }}  # Conditional step based on platform
         run: |
           echo "The platform is ${{ env.platform }}"
           echo "The region is ${{ env.region }}"
+
 
       # Step 3: Optional: Add a verification for missing environment variables
       - name: Verify Environment Variables
@@ -71,3 +81,20 @@ jobs:
         run: |
           echo "Profile path is ${{ env.profile_path }}"
           # Further steps can utilize profile_path here
+
+
+      # Example: Verify the presence of essential environment variables
+      - name: Verify Environment Variables
+        run: |
+          if [ -z "${{ env.platform }}" ] || [ -z "${{ env.region }}" ]; then
+            echo "Error: Missing platform or region environment variable!"
+            exit 1
+          fi
+
+      # Example: Using the profile path
+      - name: Use Profile Path
+        run: |
+          echo "Profile path is ${{ env.profile_path }}"
+          # Further steps can utilize profile_path here
+
+

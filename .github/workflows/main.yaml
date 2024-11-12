@@ -46,6 +46,13 @@ jobs:
     steps:
       # Checkout the code from the repository
       - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Display Platform Info
+        if: ${{ env.platform == 'Azure' }}
+        run: |
+          echo "The platform is ${{ env.platform }}"  # Corrected the typo "platfrom"
+          echo "The region is ${{ env.region }}"      # Corrected to use `${{ env.region }}`
         if: ${{ env.platform == 'Azure' }}  # Conditional step based on platform
         run: |
           echo "The platform is ${{ env.platform }}"

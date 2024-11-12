@@ -14,8 +14,7 @@ jobs:
       platform: Azure
       region: central
       profile_path: profile/
-      - name: Set environment variable for React
-        run: echo "REACT_APP_MY_VARIABLE=some_value" >> $GITHUB_ENV
+      
 
     steps:
       # Check out the code

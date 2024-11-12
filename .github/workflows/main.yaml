@@ -48,28 +48,26 @@
 #           netlify deploy --prod --dir=build --site $NETLIFY_SITE_ID
 
 
-
 name: React CI/CD Pipeline
 
 on:
   push:
-    branches: main
+    branches: 
+      - main
+  workflow_dispatch:
 
-workflow_dispatch: 
- 
 jobs:
-     display:
+  display:
     runs-on: ubuntu-latest
-   env:
-   platform: Azure
-   region: central
-   profile_path: profile/
+    env:
+      platform: Azure
+      region: central
+      profile_path: profile/
 
     steps:
       # Check out the code
       - name: Checkout Code
-       if:${{ env.platform == 'Azure'}}
-       run: |
-         echo "The platefrom"
-         echo "The region is $region"
-
+        if: ${{ env.platform == 'Azure' }}  # Fixed the syntax here
+        run: |
+          echo "The platform is ${{ env.platform }}"  # Corrected the typo "platfrom"
+          echo "The region is ${{ env.region }}"  # Corrected to use `${{ env.region }}`

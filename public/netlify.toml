@@ -1,13 +1,7 @@
 [build]
-  base = "testwebsite"        # Netlify installs dependencies here and runs the build command
-  publish = "testwebsite"     # This is the folder where your built files should be published
-  functions = "testwebsite/netlify/functions"  # Where your serverless functions live
-
-  # If you have a custom build command, specify it here
-  command = "npm run build"  # Or whatever command you use to build your project
-
-[dev]
-  functions = "testwebsite/netlify/functions"
+  base = "testwebsite"
+  publish = "testwebsite/build"  # or wherever your build output goes
+  command = "npm run build"      # Or your build command
 
 
 [[redirects]]

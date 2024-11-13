@@ -1,14 +1,26 @@
 [build]
-  publish = "build"          # Netlify will look for your built React app in this folder
-  command = "npm run build"  # The build command for React (or use yarn if applicable)
+  publish = "build"           # React's build folder where static files are output
+  command = "npm run build"   # Build command for React (use yarn if applicable)
+  functions = "netlify/functions"  # Folder for serverless functions (if used)
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = true
+  from = "/*"                # Redirect all routes to index.html for React Router
+  to = "/index.html"         # Rewrite them to index.html
+  status = 200               # Status code is 200 for the rewrite (not a redirect)
+  force = true               # Forces the rewrite even if the path exists
 
 [[headers]]
-  for = "/*"
+  for = "/*"                 # Apply these headers to all requests
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"  # Caching headers for assets
+    Cache-Control = "public, max-age=31536000, immutable"  # Cache static assets like JS, CSS, images for a year
+
+# Optional: Separate headers for specific content like the 404 page and static assets
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"  # Avoid caching the HTML file
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"  # Cache assets like JS, CSS, images

@@ -11,6 +11,10 @@ function App() {
       <br/>
       <p className="App-intro">Current Enviornment: {process.env.REACT_APP_ENVIORNMENT}</p>
  <br/>
+     <h3>Netlify Test developed</h3>
+      <br/>
+ <br/>
+    <p className="App-intro">Current Enviornment: {process.env.REACT_APP_ENVIORNMENT}</p>
     </div>
   </>
   );

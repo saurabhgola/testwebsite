@@ -8,7 +8,6 @@ function App() {
       <h2>New test branch</h2>
      <h3>Netlify Production</h3>
      <h2>New site is create</h2>
-     <h1>Hello welcome WEBSITE</h1>
       <br/>
       <p className="App-intro">Current Enviornment: {process.env.REACT_APP_ENVIORNMENT}</p>
  <br/>

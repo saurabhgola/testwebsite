@@ -1,5 +1,5 @@
 [build]
-  publish = "build"           # React's build folder where static files are output
+  publish = "build"  # React's build folder where static files are output
   command = "npm run build"   # Build command for React (use yarn if applicable)
   functions = "netlify/functions"  # Folder for serverless functions (if used)
 

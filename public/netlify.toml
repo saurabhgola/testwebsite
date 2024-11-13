@@ -9,18 +9,4 @@
   status = 200               # Status code is 200 for the rewrite (not a redirect)
   force = true               # Forces the rewrite even if the path exists
 
-[[headers]]
-  for = "/*"                 # Apply these headers to all requests
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"  # Cache static assets like JS, CSS, images for a year
 
-# Optional: Separate headers for specific content like the 404 page and static assets
-[[headers]]
-  for = "/index.html"
-  [headers.values]
-    Cache-Control = "no-cache, no-store, must-revalidate"  # Avoid caching the HTML file
-
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"  # Cache assets like JS, CSS, images

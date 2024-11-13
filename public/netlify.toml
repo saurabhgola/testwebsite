@@ -1,7 +1,14 @@
 [build]
-  publish = "build"  # React's build folder where static files are output
-  command = "npm run build"   # Build command for React (use yarn if applicable)
-  functions = "netlify/functions"  # Folder for serverless functions (if used)
+  base = "testwebsite"        # Netlify installs dependencies here and runs the build command
+  publish = "testwebsite"     # This is the folder where your built files should be published
+  functions = "testwebsite/netlify/functions"  # Where your serverless functions live
+
+  # If you have a custom build command, specify it here
+  command = "npm run build"  # Or whatever command you use to build your project
+
+[dev]
+  functions = "testwebsite/netlify/functions"
+
 
 [[redirects]]
   from = "/*"                # Redirect all routes to index.html for React Router

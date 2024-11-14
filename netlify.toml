@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/*"                # Redirect all routes to index.html for React Router
+  to = "/index.html"         # Rewrite them to index.html
+  status = 200               # Status code is 200 for the rewrite (not a redirect)
+  force = true               # Forces the rewrite even if the path exists

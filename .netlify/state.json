@@ -1,3 +1,15 @@
 {
-	"siteId": "ac8eac7b-22d7-4818-81e4-1a58a41455e6"
+	"siteId": "ac8eac7b-22d7-4818-81e4-1a58a41455e6",
+	"geolocation": {
+		"data": {
+			"country": {
+				"code": "IN",
+				"name": "India"
+			},
+			"timezone": "Asia/Kolkata",
+			"latitude": 21.9974,
+			"longitude": 79.0011
+		},
+		"timestamp": 1731566982953
+	}
 }

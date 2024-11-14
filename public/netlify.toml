@@ -1,5 +1,13 @@
-[[redirects]]
-  from = "/*"                # Redirect all routes to index.html for React Router
-  to = "/index.html"         # Rewrite them to index.html
-  status = 200               # Status code is 200 for the rewrite (not a redirect)
-  force = true               # Forces the rewrite even if the path exists
+[build]
+  base = "/"
+  publish = "dist"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "16.x"
+
+[functions]
+  directory = "netlify/functions"
+
+[context.production.environment]
+  NODE_ENV = "production"

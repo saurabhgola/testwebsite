@@ -14,6 +14,7 @@ jobs:
       platform: Azure
       region: central
       profile_path: profile/
+      
 
     steps:
       # Check out the code
@@ -22,3 +23,5 @@ jobs:
         run: |
           echo "The platform is ${{ env.platform }}"  # Corrected the typo "platfrom"
           echo "The region is ${{ env.region }}"  # Corrected to use `${{ env.region }}`
+
+

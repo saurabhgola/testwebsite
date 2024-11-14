@@ -1,6 +1,6 @@
 [build]
-  base = "testwebsite"
-  publish = "testwebsite/build"  # or wherever your build output goes
+  base = "build"
+  publish = "build"  # or wherever your build output goes
   command = "npm run build"      # Or your build command
 
 

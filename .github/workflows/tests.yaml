@@ -22,3 +22,5 @@ jobs:
 
       - name: Run tests
         run: npm test -- --ci --coverage
+Test Suites: 0 failed, 1 total
+Tests: 0 failed, 10 passed, 10 total

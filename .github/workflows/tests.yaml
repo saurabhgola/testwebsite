@@ -17,8 +17,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests
-        run: npm test -- --ci --coverage || true  # Allow failure, but don't stop the workflow
-
       - name: Build project
-        run: npm run build
+        run: npm run build  # Run build before tests if needed
+
+      - name: Run tests
+        run: npm test -- --ci --coverage

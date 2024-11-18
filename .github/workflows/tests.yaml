@@ -21,7 +21,7 @@ jobs:
         run: npm run build
 
       - name: Run tests
-        run: npm test -- --ci --coverage --runInBand
+        run: npm test -- --ci --coverage --runInBand --verbose
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v3

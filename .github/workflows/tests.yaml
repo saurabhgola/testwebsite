@@ -8,25 +8,17 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu image to run the job
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3  # Checkout the code from the pull request
+        uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: npm install  # Install the project dependencies
+        run: npm install
 
-      - name: Build the project
-        run: npm run build  # Build the project (if this step is required for tests to work correctly)
+      - name: Build project
+        run: npm run build  # Run build before tests if needed
 
-      - name: Run tests with coverage
-        run: npm test -- --ci --coverage --verbose  # Run tests with detailed output for better debugging
-
-      - name: Debug installed dependencies (optional)
-        run: npm list --depth=0  # Output the list of installed dependencies to check for mismatches
-
-      - name: Output environment variables (optional)
-        run: printenv  # Output all environment variables to ensure they are correctly set (helpful for debugging)
-
-      # Optionally, add deployment or other steps here if necessary
+      - name: Run tests
+        run: npm test -- --ci --coverage

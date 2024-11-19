@@ -1,39 +1,33 @@
-name: Node.js CI
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
-      - main
+      - main  # or 'master' depending on your default branch
   pull_request:
     branches:
       - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-latest  # The runner environment
+    
     steps:
-    # 1. Checkout the repository code
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    # 2. Set up Node.js (make sure this matches your local Node version)
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'  # Update this to your preferred Node.js version
-
-    # 3. Install dependencies
-    - name: Install dependencies
-      run: npm install
-
-    # 4. Run tests
-    - name: Run tests
-      run: npm test
-
-    - name: Upload test results if failure
-      if: failure()  # Only upload if the previous step failed
-      uses: actions/upload-artifact@v3  # Updated to the latest version (v3)
-      with:
-        name: test-logs
-        path: ./test-results/  # Update this path to where your test results are stored
+      - name: Checkout code
+        uses: actions/checkout@v3  # Checks out the repository code
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.13.1'  # Specify the version of Node.js you want to use
+      
+      - name: Install dependencies
+        run: |
+          npm install  # Install your app dependencies
+        
+      - name: Run tests
+        run: |
+          npm test -- --ci --watchAll=false  # Run tests with Jest
+      
+      - name: Build app
+        run: npm run build  # Build the app (if you want to do deployment)

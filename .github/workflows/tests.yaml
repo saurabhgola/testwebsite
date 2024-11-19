@@ -3,10 +3,10 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - create-deployed-test  # or 'master' depending on your default branch
+      - create-deployed-test # or 'master' depending on your default branch
   pull_request:
     branches:
-    create-deployed-test  - main
+      - create-deployed-test
 
 jobs:
   build:

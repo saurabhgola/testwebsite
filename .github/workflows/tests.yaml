@@ -1,11 +1,11 @@
 name: React CI
 
 on:
-  pull_request: [ create-deployed-test ]
+  pull_request: {}
   workflow_dispatch: {}
   push:
     branches:
-      - main
+      - create-deployed-test
 
 jobs:
   tests:

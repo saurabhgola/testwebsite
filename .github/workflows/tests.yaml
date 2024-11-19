@@ -1,27 +1,35 @@
-name: React CI
+name: Run Tests
 
 on:
-  pull_request:
-  workflow_dispatch:
   push:
-    branches: [ create-deployed-test ]
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  tests:
-    name: Run Tests
+  test:
     runs-on: ubuntu-latest
-    
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2  # Checkout repository
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2  # Set up Node.js
-        with:
-          node-version: '20'  # Specify Node.js version
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'  # Make sure this matches your local version
 
-      - name: Install dependencies
-        run: npm install  # Install project dependencies
+    - name: Install dependencies
+      run: npm install
 
-      - name: Run tests
-        run: npm run test  # Run tests
+    - name: Run tests
+      run: npm test
+
+    - name: Upload test results
+      if: failure()
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-logs
+        path: ./test-results/

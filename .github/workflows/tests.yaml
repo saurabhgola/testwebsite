@@ -27,7 +27,7 @@ jobs:
         
       - name: Run tests
         run: |
-          npm test -- --ci --watchAll=false  # Run tests with Jest
+          npm test -- --ci && --watchAll=false  # Run tests with Jest
       
       - name: Build app
         run: npm run build  # Build the app (if you want to do deployment)

@@ -1,16 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Datacreate from "./Datacreate";
 import "./App.css";
 
 function App() {
-  // const [formData, setFormData] = useState(null);
-
-  // const handleFormSubmit = (data, mode) => {
-  //   if (mode === 'create') {
-  //     setFormData(data);
-  //   }
-  // };
   return (
     <Router>
       <div className="App">

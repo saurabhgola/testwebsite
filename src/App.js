@@ -1,26 +1,35 @@
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Datacreate from "./Datacreate";
+import "./App.css"
 
 function App() {
+  // const [formData, setFormData] = useState(null);
+
+  // const handleFormSubmit = (data, mode) => {
+  //   if (mode === 'create') {
+  //     setFormData(data);
+  //   }
+  // };
   return (
-    <div className="App">
-      <div className="container">
+    <Router>
+      <div className="App">
+        <div className="navigation_">
+        <li>
+                <Link to="/create">Create</Link>
+              </li>
+              <li>
+                <Link to="/edit">Edit</Link>
+              </li>
+              </div>
         <div className="content">
-          <div className="header">
-            <h3>Netlify Production</h3>
-            <h1>Hello, welcome to the WEBSITE</h1>
-            <h3>Netlify test new build</h3>
-            <h3>Netlify create-deployed-test</h3>
-            <br />
-            <h1>WEBSITE NEW</h1>
-            <br />
-            <p className="App-intro">
-              Current Environment: {process.env.REACT_APP_ENVIORNMENT}
-            </p>
-            <br />
-          </div>
+        <Routes>
+            <Route path="/create" element={<Datacreate mode="create" />} />
+            <Route path="/edit" element={<Datacreate mode="edit" />} />
+          </Routes>
         </div>
-      </div>
-    </div>
+        </div>
+    </Router>
   );
 }
 

@@ -1,17 +1,28 @@
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Datacreate from "./Datacreate";
+import "./App.css";
 
 function App() {
   return (
-  <>
-    <div className="App">
-     <h3>Netlify Production</h3>
-     <h1>WEBSITE NEW</h1>
-     <h3>netlify test new build</h3>
-      <br/>
-      <p className="App-intro">Current Enviornment: {process.env.REACT_APP_ENVIORNMENT}</p>
- <br/>
-    </div>
-  </>
+    <Router>
+      <div className="App">
+        <div className="navigation_">
+          <li>
+            <Link to="/create">Create</Link>
+          </li>
+          <li>
+            <Link to="/edit">Edit</Link>
+          </li>
+        </div>
+        <div className="content">
+          <Routes>
+            <Route path="/create" element={<Datacreate mode="create" />} />
+            <Route path="/edit" element={<Datacreate mode="edit" />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 

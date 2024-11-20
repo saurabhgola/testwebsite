@@ -23,5 +23,3 @@ jobs:
         run: |
           echo "The platform is ${{ env.platform }}"  # Corrected the typo "platfrom"
           echo "The region is ${{ env.region }}"  # Corrected to use `${{ env.region }}`
-
-
